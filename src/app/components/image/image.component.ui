@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="DrawImage" parent="GtkBox">
+    <property name="hexpand">TRUE</property>
+    <property name="vexpand">TRUE</property>
+    <child>
+      <object class="GtkImage" id="image">
+        <property name="hexpand">TRUE</property>
+        <property name="vexpand">TRUE</property>
+        <property name="file" bind-source="DrawImage" bind-property="file"></property>
+        <!-- <property name="file">C:\Users\untun\Documents\vscode\draw\draw\assets\images\titties.jpg</property> -->
+      </object>
+    </child>
+  </template>
+</interface>

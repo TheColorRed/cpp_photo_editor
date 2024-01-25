@@ -1,0 +1,40 @@
+$border-color: #383838 !default;
+
+window {
+  @import '../../components/menu/menu.component';
+  notebook {
+    border-width: 0;
+    header {
+      padding: 0;
+      margin: 0;
+      border-width: 0;
+      tabs {
+        background: #424242;
+        margin: 0;
+        padding: 0;
+        tab {
+          color: #ffffff;
+          min-height: 20px;
+          box-shadow: none;
+          padding-left: 15px;
+          padding-right: 15px;
+          margin: 0;
+          border: solid 1px $border-color;
+          &:first-child {
+            border-left: none;
+          }
+          &:checked {
+            background: #535353;
+            font-weight: bold;
+          }
+          &:hover {
+            background: #4f4f4f;
+          }
+        }
+      }
+    }
+    stack {
+      background: #282828;
+    }
+  }
+}

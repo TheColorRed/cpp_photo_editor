@@ -1,0 +1,26 @@
+menubar {
+  background: #535353;
+  color: #ffffff;
+  popover {
+    contents {
+      padding: 0;
+      border-radius: 0;
+    }
+  }
+  item {
+    color: #ffffff;
+    box-shadow: none;
+    &:hover,
+    &:focus,
+    &:active {
+      color: #ffffff;
+      box-shadow: none;
+    }
+
+    popover {
+      contents {
+        padding: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build:css": "npx sass src/app/themes:src/app/css --no-source-map",
+    "build:resources": "bash ./src/app/scripts/create-resources.sh",
+    "resources": "npm run build:css && npm run build:resources"
+  },
+  "devDependencies": {
+    "sass": "^1.70.0"
+  }
+}

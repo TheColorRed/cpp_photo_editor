@@ -1,0 +1,54 @@
+window menubar {
+  background: #535353;
+  color: #ffffff;
+}
+window menubar popover contents {
+  padding: 0;
+  border-radius: 0;
+}
+window menubar item {
+  color: #ffffff;
+  box-shadow: none;
+}
+window menubar item:hover, window menubar item:focus, window menubar item:active {
+  color: #ffffff;
+  box-shadow: none;
+}
+window menubar item popover contents {
+  padding: 0;
+}
+window notebook {
+  border-width: 0;
+}
+window notebook header {
+  padding: 0;
+  margin: 0;
+  border-width: 0;
+}
+window notebook header tabs {
+  background: #424242;
+  margin: 0;
+  padding: 0;
+}
+window notebook header tabs tab {
+  color: #ffffff;
+  min-height: 20px;
+  box-shadow: none;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0;
+  border: solid 1px #383838;
+}
+window notebook header tabs tab:first-child {
+  border-left: none;
+}
+window notebook header tabs tab:checked {
+  background: #535353;
+  font-weight: bold;
+}
+window notebook header tabs tab:hover {
+  background: #4f4f4f;
+}
+window notebook stack {
+  background: #282828;
+}

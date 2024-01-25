@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/ui">
+    <file preprocess="xml-stripblanks">main-window.ui</file>
+    <file preprocess="xml-stripblanks">components/image/image.component.ui</file>
+    <file preprocess="xml-stripblanks" alias="main-menu.ui">components/menu/menu.component.ui</file>
+    <file preprocess="xml-stripblanks">components/file-bar/file-bar.component.ui</file>
+  </gresource>
+  <gresource prefix="/css">
+    <file compressed="true" alias="dark/theme.css">css/dark/theme.css</file>
+  </gresource>
+</gresources>
