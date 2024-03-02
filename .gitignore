@@ -2,3 +2,4 @@
 build
 assets
 node_modules
+!src/app/assets

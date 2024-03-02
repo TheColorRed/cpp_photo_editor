@@ -3,10 +3,12 @@
 #include "app/classes/file.h"
 #include "events/events.h"
 
-class File;
+// class File;
 
-class Subjects {
-public:
-  static Subject<File *> *fileAdded;
-  // static Subject<void> *filesUpdated;
-};
+// using FileSubject = shared_ptr<Subject<shared_ptr<File>>>;
+
+// class Subjects {
+// public:
+//   static FileSubject fileAdded;
+//   // static Subject<void> *filesUpdated;
+// };

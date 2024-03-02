@@ -6,8 +6,8 @@ File::File(string file_path) {
   this->ext = file_path.substr(file_path.find_last_of(".") + 1);
 }
 
-File* File::create(string file_path) {
-  auto file = new File(file_path);
+shared_ptr<File> File::create(string file_path) {
+  shared_ptr<File> file(new File(file_path));
   file->load();
   return file;
 }

@@ -1,29 +1,37 @@
 #pragma once
 
-#include "../events.h"
+#include <functional>
 
-template <typename T>
-class Subject;
+#include "subject.h"
 
-template <typename T>
-class BehaviorSubject : public Subject<T> {
-private:
-  T value;
+namespace rx {
+  template <typename T>
+  class Subject;
 
-public:
-  BehaviorSubject(T value) {
-    this->value = value;
-  }
-  void next(T value) override {
-    this->value = value;
-    Observable<T>::next();
-  }
-  void subscribe(function<void(T)> callback) {
-    Subject<T>::subscribe([callback, this]() {
-      callback(this->value);
-    });
-  }
-  T getValue() {
-    return value;
-  }
-};
+  template <typename T>
+  class BehaviorSubject : public Subject<T> {
+  private:
+    Next<T> value;
+
+  public:
+    BehaviorSubject(Next<T> value) {
+      this->value = value;
+    }
+    NextFn<T> next = [this](Next<T> value = nullptr) {
+      this->value = value;
+      Subject<T>::next(value);
+    };
+    /**
+     * Subscribe to the BehaviorSubject.
+     * On initial subscription, the callback will be called with the current value of the BehaviorSubject.
+     */
+    Subscription* subscribe(function<void(T)> callback) {
+      return Subject<T>::subscribe([callback, this]() {
+        callback(this->value);
+      });
+    }
+    T getValue() {
+      return value;
+    }
+  };
+}

@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/ui">
+  <!-- <gresource prefix="/ui">
     <file preprocess="xml-stripblanks">main-window.ui</file>
     <file preprocess="xml-stripblanks">components/image/image.component.ui</file>
     <file preprocess="xml-stripblanks" alias="main-menu.ui">components/menu/menu.component.ui</file>
     <file preprocess="xml-stripblanks">components/file-bar/file-bar.component.ui</file>
-  </gresource>
+  </gresource> -->
   <gresource prefix="/css">
-    <file compressed="true" alias="dark/theme.css">css/dark/theme.css</file>
+    <file compressed="true" alias="themes/dark.css">assets/css/dark/theme.css</file>
+  </gresource>
+  <gresource prefix="/fonts">
+    <file compressed="true" alias="font-awesome.otf">assets/fonts/font-awesome-sharp-regular.otf</file>
+  </gresource>
+  <gresource prefix="/icons">
+    <file alias="xmark.svg">assets/icons/xmark.svg</file>
   </gresource>
 </gresources>

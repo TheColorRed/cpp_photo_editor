@@ -58,7 +58,7 @@ public:
    * The buffer is a vector of unsigned 8-bit integers that represent the image's RGBA values.
    * The buffer is in the order of red, green, blue, and alpha.
    */
-  unique_ptr<vector<uint8_t>> getBuffer();
+  shared_ptr<vector<uint8_t>> getBuffer();
   /**
    * Sets the width of the image.
    */
@@ -295,7 +295,7 @@ public:
     shared_ptr<Image> image(new Image(width, height));
     auto size = width * height;
 
-    // Set up the image's adjustments, filters, and transforms.
+    // Set up the image's child classes.
     image->adjust = make_shared<Adjust>(image);
     image->filter = make_shared<Filter>(image);
     image->transform = make_shared<Transform>(image);

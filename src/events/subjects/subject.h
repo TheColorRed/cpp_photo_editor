@@ -3,66 +3,71 @@
 #include <functional>
 #include <vector>
 
-#include "../events.h"
+#include "../debug.h"
+#include "../internal/observable.h"
+#include "../internal/observer.h"
+#include "../internal/subscriber.h"
 
-template <typename T>
-class Observable;
+namespace rx {
+  template <typename T>
+  class Observable;
 
-template <typename T>
-class Subject : public Observable<T> {
-  using CurrentObserver = vector<shared_ptr<Observer<T>>>;
+  template <typename T>
+  class Subject : public Observable<T> {
+    using CurrentObservers = vector<Observer<T>*>;
 
-private:
-  unique_ptr<CurrentObserver> currentObservers = make_unique<CurrentObserver>();
-  bool closed = false;
+  private:
+    CurrentObservers* currentObservers = CurrentObservers();
+    bool closed = false;
 
-protected:
-  TeardownLogic<T> _subscribe(shared_ptr<Subscriber<T>> subscriber) override {
-    printf("Subject::_subscribe\n");
-    this->currentObservers->push_back(subscriber);
-    return subscriber;
-  }
-
-public:
-  void next(T value) {
-    if (this->closed)
-      return;
-
-    auto observers = this->currentObservers.get();
-    for (int i = 0; i < observers->size(); i++) {
-      auto observer = observers->at(i);
-      observer->next(value);
+  protected:
+    TeardownLogic _subscribe(Subscriber<T>* subscriber) override {
+      Debug::debug("Subject::_subscribe");
+      this->currentObservers.push_back(subscriber);
+      return subscriber;
     }
-  }
 
-  void error(any err) {
-    if (this->closed)
-      return;
+  public:
+    NextFn<T> next = [this](Next<T> value = monostate()) {
+      if (this->closed)
+        return;
 
-    for (auto observer : currentObservers)
-      observer.error(err);
+      auto observers = this->currentObservers.get();
+      for (int i = 0; i < observers->size(); i++) {
+        auto observer = observers->at(i);
+        observer->next(value);
+      }
+    };
 
-    this->currentObservers.clear();
-  }
+    ErrorFn error = [this](any err) {
+      if (this->closed)
+        return;
 
-  void complete() {
-    if (this->closed)
-      return;
+      for (auto observer : currentObservers)
+        observer.error(err);
 
-    for (auto observer : currentObservers)
-      observer.complete();
+      this->currentObservers.clear();
+    };
 
-    this->currentObservers.clear();
-  }
+    CompleteFn complete = [this]() {
+      if (this->closed)
+        return;
 
-  void unsubscribe() {
-    this->closed = true;
-    this->currentObservers.clear();
-  }
+      for (auto observer : currentObservers)
+        observer.complete();
 
-  Observable<T>* asObservable() {
-    return new Observable<T>([this](Subscriber<T> subscriber) {
-      return this->subscribe(subscriber);
-    });
-  }
-};
+      this->currentObservers.clear();
+    };
+
+    UnsubscribeFn unsubscribe = [this]() {
+      this->closed = true;
+      this->currentObservers.clear();
+    };
+
+    Observable<T>* asObservable() {
+      return new Observable<T>(new Observable<T>([this](Subscriber<T> subscriber) {
+        return this->subscribe(subscriber);
+      }));
+    }
+  };
+}

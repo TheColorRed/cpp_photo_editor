@@ -1,3 +1,5 @@
+#include "jpeg.h"
+
 #include <jpeglib.h>
 
 #include <memory>
@@ -5,7 +7,6 @@
 
 #include "../../color/color.h"
 #include "../../color/rgb.h"
-#include "jpeg.h"
 
 using namespace std;
 
@@ -56,7 +57,7 @@ bool Jpeg::save(string path, shared_ptr<Image> image) {
   jpeg_create_compress(&info);
 
   if ((outfile = fopen(path.c_str(), "wb")) == NULL) {
-    fprintf(stderr, "can't open %s\n", path);
+    // fprintf(stderr, "can't open %s\n", path);
     return false;
   }
   jpeg_stdio_dest(&info, outfile);

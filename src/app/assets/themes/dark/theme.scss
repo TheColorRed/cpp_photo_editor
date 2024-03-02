@@ -1,7 +1,7 @@
 $border-color: #383838 !default;
 
 window {
-  @import '../../components/menu/menu.component';
+  @import '../../../components/menu/menu.component';
   notebook {
     border-width: 0;
     header {
@@ -14,7 +14,7 @@ window {
         padding: 0;
         tab {
           color: #ffffff;
-          min-height: 20px;
+          min-height: 1px;
           box-shadow: none;
           padding-left: 15px;
           padding-right: 15px;
@@ -29,6 +29,14 @@ window {
           }
           &:hover {
             background: #4f4f4f;
+          }
+          button {
+            background: transparent;
+            border: transparent;
+            padding: 0;
+            margin-left: 10px;
+            border: solid 1px red;
+            border-radius: 0;
           }
         }
       }

@@ -392,24 +392,16 @@ double Image::getMaskStrengthAt(int index) {
   return this->mask->red[index] / 255.0;
 }
 
-unique_ptr<vector<uint8_t>> Image::getBuffer() {
+shared_ptr<vector<uint8_t>> Image::getBuffer() {
   int size = this->width * this->height * 4;
-  unique_ptr<vector<uint8_t>> buffer(new vector<uint8_t>(size, 0));
-  // uint8_t* buffer = (uint8_t*)malloc(this->width * this->height * 4);
+  shared_ptr<vector<uint8_t>> buffer(new vector<uint8_t>(size, 0));
+
   auto ref = buffer.get();
   for (int i = 0; i < this->width * this->height; i++) {
     ref->at(i * 4) = this->red[i];
     ref->at(i * 4 + 1) = this->green[i];
     ref->at(i * 4 + 2) = this->blue[i];
     ref->at(i * 4 + 3) = this->alpha[i];
-    // ref->push_back(this->red[i]);
-    // ref->push_back(this->green[i]);
-    // ref->push_back(this->blue[i]);
-    // ref->push_back(this->alpha[i]);
-    // buffer[i * 4] = this->red[i];
-    // buffer[i * 4 + 1] = this->green[i];
-    // buffer[i * 4 + 2] = this->blue[i];
-    // buffer[i * 4 + 3] = this->alpha[i];
   }
 
   return buffer;

@@ -2,7 +2,6 @@
 
 #include <string>
 
-#include "gui/gui.h"
 #include "lib/draw.h"
 
 using namespace std;
@@ -34,7 +33,7 @@ private:
   File(string file_path);
 
 public:
-  static File* create(string file_path);
+  static shared_ptr<File> create(string file_path);
 
   string getPath() {
     return path;
@@ -49,5 +48,5 @@ public:
     return dirty;
   }
 
-  GdkTexture* getTexture();
+  // shared_ptr<GdkTexture> getTexture();
 };

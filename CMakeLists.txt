@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.28)
 project(draw VERSION 1.0.0 LANGUAGES CXX C)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY bin)
 set(CMAKE_BUILD_TYPE Debug)
@@ -15,7 +15,7 @@ include_directories(
 
 # Shared libraries
 add_subdirectory(src/lib)
-add_subdirectory(src/gui)
+# add_subdirectory(src/gui)
 add_subdirectory(src/events)
 
 # Applications

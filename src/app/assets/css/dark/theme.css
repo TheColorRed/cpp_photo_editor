@@ -32,7 +32,7 @@ window notebook header tabs {
 }
 window notebook header tabs tab {
   color: #ffffff;
-  min-height: 20px;
+  min-height: 1px;
   box-shadow: none;
   padding-left: 15px;
   padding-right: 15px;
@@ -48,6 +48,14 @@ window notebook header tabs tab:checked {
 }
 window notebook header tabs tab:hover {
   background: #4f4f4f;
+}
+window notebook header tabs tab button {
+  background: transparent;
+  border: transparent;
+  padding: 0;
+  margin-left: 10px;
+  border: solid 1px red;
+  border-radius: 0;
 }
 window notebook stack {
   background: #282828;

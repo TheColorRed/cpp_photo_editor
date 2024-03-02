@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build:css": "npx sass src/app/themes:src/app/css --no-source-map",
+    "build:css": "npx sass src/app/assets/themes:src/app/assets/css --no-source-map",
     "build:resources": "bash ./src/app/scripts/create-resources.sh",
     "resources": "npm run build:css && npm run build:resources"
   },
